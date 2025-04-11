@@ -6,7 +6,7 @@
 
 Use [linux.py](./linux.py) and [win.py](./win.py) for linux.
 
-Use [windows.py](./windows.py) and [win.py](./win.py) [icon.png](./icon.png) for windows.
+Use [windows.py](./windows.py), [win.py](./win.py) and [icon.png](./icon.png) for windows.
 
 ## Install
 
