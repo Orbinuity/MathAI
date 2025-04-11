@@ -63,7 +63,7 @@ def null(key): pass
 def analyze_image(image_path):
     try:
         img = Image.open(image_path)
-        response = model.generate_content(["On this image is a math problem if not say ONLY 'error 1'(with out ') if there is 1 awnser needed(example): 13 and if for examople 2: 15, 94 and if its with remainder(for example): 12 remainder: 2. and if its 2 times with remainder(for example): 12 remainder: 2, 15 remainder: 3", img])
+        response = model.generate_content(["On this image is a math problem if not say ONLY 'error 1'(with out ') if there is 1 awnser needed(example): 13 and if for examople 2: 15, 94 and if its with remainder(for example): 12 remainder: 2. and if its 2 times with remainder(for example): 12 remainder: 2, 15 remainder: 3, NEVER USE ENTER DO IT EXACTLY LIKE I SHOWED HERE!!!", img])
         response.resolve()
         if response.text == "error 1":
             return "Error!", "No math problem found!"
