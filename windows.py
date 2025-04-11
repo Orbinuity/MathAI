@@ -8,6 +8,8 @@ import ctypes
 GOOGLE_API_KEY = "REPLACE_WITH_YOUR_GOOGLE_API"
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
+VERSION = '1.0.0'
+
 genai.configure(api_key=GOOGLE_API_KEY)
 
 model = genai.GenerativeModel(GEMINI_MODEL_ID)
@@ -49,7 +51,8 @@ def analyze_image(image_path):
         if response.text == "error 1":
             return "Error!", "No math problem found!"
         else:
-            return "Awnsers Found!", response.text
+            os.system(f"python win.py '{response.text}' > /dev/null 2>&1 &")
+            return "Awnser(s) Found!", response.text
     except Exception as e:
         return "Error!", f"Error analyzing image: {str(e)}"
 
