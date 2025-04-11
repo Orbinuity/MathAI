@@ -10,7 +10,7 @@ from winotify import Notification, audio
 GOOGLE_API_KEY = "REPLACE_WITH_YOUR_GOOGLE_API"
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
-VERSION = '1.1.0'
+VERSION = '1.1.1'
 
 def check_version():
     response = requests.get("https://raw.githubusercontent.com/Orbinuity/MathAI/main/latest.version")
@@ -18,10 +18,12 @@ def check_version():
     if response.status_code == 200:
         latestVersion = response.text
     else:
+        send_notification("Error!", f"Failed to retrieve data: {response.status_code}, maby you wifi is off?")
         print(f"Failed to retrieve data: {response.status_code}, maby you wifi is off?")
         sys.exit(1)
 
     if VERSION != latestVersion:
+        send_notification("Update Available!", f"New version available: {latestVersion}, please update!")
         print(f"New version available: {latestVersion}, please update!")
         sys.exit(1)
     
