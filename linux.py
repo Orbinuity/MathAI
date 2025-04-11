@@ -8,7 +8,7 @@ import google.generativeai as genai
 GOOGLE_API_KEY = "REPLACE_WITH_YOUR_GOOGLE_API"
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
-VERSION = '1.1.0'
+VERSION = '1.1.1'
 
 def check_version():
     response = requests.get("https://raw.githubusercontent.com/Orbinuity/MathAI/main/latest.version")
