@@ -2,7 +2,7 @@ import sys
 import os
 import atexit
 from PyQt5.QtCore import Qt, QRect
-from PyQt5.QtGui import QFontMetrics, QPainter, QColor
+from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QApplication, QLabel, QWidget
 
 POS_FILE = "overlayPos.dat"
