@@ -4,8 +4,8 @@
 
 ## Useage
 
-Use [linux.py](./linux.py) for linux.
-Use [windows.py](./windows.py) for windows.
+Use [linux.py](./linux.py) and [win.py](./win.py) for linux.
+Use [windows.py](./windows.py) and [win.py](./win.py) [icon.png](./icon.png) for windows.
 
 ## License
 
