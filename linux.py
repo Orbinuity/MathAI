@@ -8,7 +8,7 @@ import google.generativeai as genai
 GOOGLE_API_KEY = "REPLACE_WITH_YOUR_GOOGLE_API"
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 response = requests.get("https://raw.githubusercontent.com/Orbinuity/MathAI/main/latest.version")
 
@@ -48,7 +48,7 @@ def analyze_image(image_path):
         if response.text == "error 1":
             return "Error!", "No math problem found!"
         else:
-            os.system(f"python win.py '{response.text}' > /dev/null 2>&1 &")
+            os.system(f"""python win.py "{response.text}" > /dev/null 2>&1 &""")
             return "Awnser(s) Found!", response.text
     except Exception as e:
         return "Error!", f"Error analyzing image: {str(e)}!"
