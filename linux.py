@@ -1,12 +1,28 @@
 import os
+import sys
+import requests
 from pynput import keyboard
-import google.generativeai as genai
 from PIL import ImageGrab, Image
+import google.generativeai as genai
 
 GOOGLE_API_KEY = "REPLACE_WITH_YOUR_GOOGLE_API"
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
 VERSION = '1.0.0'
+
+response = requests.get("https://raw.githubusercontent.com/Orbinuity/MathAI/main/latest.version")
+
+if response.status_code == 200:
+    latestVersion = response.text
+else:
+    print(f"Failed to retrieve data: {response.status_code}, maby you wifi is off?")
+    sys.exit(1)
+
+if VERSION != latestVersion:
+    print(f"New version available: {latestVersion}, please update!")
+    sys.exit(1)
+    
+print("Update check complete, you are on the latest version!")
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
