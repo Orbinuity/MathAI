@@ -1,14 +1,31 @@
 import os
-from pynput import keyboard
-import google.generativeai as genai
-from PIL import ImageGrab, Image
-from winotify import Notification, audio
+import sys
 import ctypes
+import requests
+from pynput import keyboard
+from PIL import ImageGrab, Image
+import google.generativeai as genai
+from winotify import Notification, audio
 
 GOOGLE_API_KEY = "REPLACE_WITH_YOUR_GOOGLE_API"
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
 VERSION = '1.0.0'
+
+response = requests.get("https://raw.githubusercontent.com/Orbinuity/MathAI/main/latest.version")
+
+if response.status_code == 200:
+    latestVersion = response.text
+else:
+    print(f"Failed to retrieve data: {response.status_code}, maby you wifi is off?")
+    sys.exit(1)
+
+if VERSION != latestVersion:
+    print(f"New version available: {latestVersion}, please update!")
+    sys.exit(1)
+
+    
+print("Update check complete, you are on the latest version!")
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
@@ -51,7 +68,7 @@ def analyze_image(image_path):
         if response.text == "error 1":
             return "Error!", "No math problem found!"
         else:
-            os.system(f"python win.py '{response.text}' > /dev/null 2>&1 &")
+            os.system(f"start /B python win.py '{response.text}' > null 2>&1")
             return "Awnser(s) Found!", response.text
     except Exception as e:
         return "Error!", f"Error analyzing image: {str(e)}"
