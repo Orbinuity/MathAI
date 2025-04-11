@@ -10,21 +10,22 @@ from winotify import Notification, audio
 GOOGLE_API_KEY = "REPLACE_WITH_YOUR_GOOGLE_API"
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
-VERSION = '1.0.1'
+VERSION = '1.0.2'
 
-response = requests.get("https://raw.githubusercontent.com/Orbinuity/MathAI/main/latest.version")
+def check_version():
+    response = requests.get("https://raw.githubusercontent.com/Orbinuity/MathAI/main/latest.version")
 
-if response.status_code == 200:
-    latestVersion = response.text
-else:
-    print(f"Failed to retrieve data: {response.status_code}, maby you wifi is off?")
-    sys.exit(1)
+    if response.status_code == 200:
+        latestVersion = response.text
+    else:
+        print(f"Failed to retrieve data: {response.status_code}, maby you wifi is off?")
+        sys.exit(1)
 
-if VERSION != latestVersion:
-    print(f"New version available: {latestVersion}, please update!")
-    sys.exit(1)
-
+    if VERSION != latestVersion:
+        print(f"New version available: {latestVersion}, please update!")
+        sys.exit(1)
     
+check_version()
 print("Update check complete, you are on the latest version!")
 
 genai.configure(api_key=GOOGLE_API_KEY)
@@ -75,6 +76,7 @@ def analyze_image(image_path):
 
 def on_press(key):
     if key == keyboard.Key.f8:
+        check_version()
         print("You pressed 'f8'!")
         shot_name = screenshot("screenshot.png")
 
