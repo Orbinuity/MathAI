@@ -4,7 +4,6 @@ import atexit
 from PyQt5.QtCore import Qt, QRect
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtWidgets import QApplication, QLabel, QWidget
-import platform
 
 POS_FILE = "overlayPos.dat"
 ALL_POS_FILE = "overlayPositions.dat"
@@ -43,18 +42,13 @@ class TextOverlay(QWidget):
         atexit.register(self.cleanup_position)
 
     def initUI(self):
-        window_flags = (
+        self.setWindowFlags(
             Qt.FramelessWindowHint |
             Qt.WindowStaysOnTopHint |
             Qt.Tool |
-            Qt.WindowDoesNotAcceptFocus
+            Qt.WindowDoesNotAcceptFocus |
+            Qt.X11BypassWindowManagerHint
         )
-
-        # Conditionally add X11 bypass flag if on Linux
-        if platform.system() == "Linux":
-            window_flags |= Qt.X11BypassWindowManagerHint
-
-        self.setWindowFlags(window_flags)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.setAttribute(Qt.WA_X11DoNotAcceptFocus)
 
