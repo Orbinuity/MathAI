@@ -10,7 +10,7 @@ from winotify import Notification, audio
 GOOGLE_API_KEY = "REPLACE_WITH_YOUR_GOOGLE_API"
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
-VERSION = '1.1.1'
+VERSION = '1.1.2'
 
 def check_version():
     response = requests.get("https://raw.githubusercontent.com/Orbinuity/MathAI/main/latest.version")
@@ -71,7 +71,7 @@ def analyze_image(image_path):
         if response.text == "error 1":
             return "Error!", "No math problem found!"
         else:
-            os.system(f"""start /B python win.py "{response.text}" > null 2>&1""")
+            os.system(f"""start /B python win.py "{response.text.replace('\n', ' ')}" > null 2>&1""")
             return "Awnser(s) Found!", response.text
     except Exception as e:
         return "Error!", f"Error analyzing image: {str(e)}"
