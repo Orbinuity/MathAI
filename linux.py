@@ -10,6 +10,9 @@ GEMINI_MODEL_ID = "gemini-2.0-flash"
 
 VERSION = '1.1.2'
 
+if 'DISPLAY' not in os.environ:
+    os.environ['DISPLAY'] = ':0'
+
 def check_version():
     response = requests.get("https://raw.githubusercontent.com/Orbinuity/MathAI/main/latest.version")
 
