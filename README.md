@@ -18,7 +18,6 @@ Use [windows.py](./windows.py), [win.py](./win.py), [api_key](./api_key) and [ic
   <strong>Warning:</strong> Make sure that you replace the <a href="./api_key"><u style="color: red;">api_key</u></a> with your Gemini api key!
 </div>
 
-
 ## Install
 
 Python
