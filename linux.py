@@ -5,7 +5,11 @@ from pynput import keyboard
 from PIL import ImageGrab, Image
 import google.generativeai as genai
 
-GOOGLE_API_KEY = "REPLACE_WITH_YOUR_GOOGLE_API"
+GOOGLE_API_KEY = open("api_key", 'r').read().strip()
+if not GOOGLE_API_KEY:
+    print("API key is empty, please fill in the api_key file!")
+    sys.exit(1)
+
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
 VERSION = '1.1.2'
