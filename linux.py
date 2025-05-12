@@ -13,10 +13,16 @@ if not GOOGLE_API_KEY:
 
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
-VERSION = '1.1.2'
+VERSION = '1.1.3'
 
 if 'DISPLAY' not in os.environ:
     os.environ['DISPLAY'] = ':0'
+
+def send_notification(title, message):
+    print(f"{title} - {message}")
+    command = f'notify-send "{title}" "{message}"'
+    os.system(command)
+
 
 def check_version():
     response = requests.get("https://raw.githubusercontent.com/Orbinuity/MathAI/main/latest.version")
@@ -39,11 +45,6 @@ print("Update check complete, you are on the latest version!")
 genai.configure(api_key=GOOGLE_API_KEY)
 
 model = genai.GenerativeModel(GEMINI_MODEL_ID)
-
-def send_notification(title, message):
-    print(f"{title} - {message}")
-    command = f'notify-send "{title}" "{message}"'
-    os.system(command)
 
 def screenshot(name):
     screenshot = ImageGrab.grab()
