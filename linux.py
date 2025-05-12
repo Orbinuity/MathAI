@@ -13,7 +13,7 @@ if not GOOGLE_API_KEY:
 
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
-VERSION = '1.1.3'
+VERSION = '1.2.0'
 
 if 'DISPLAY' not in os.environ:
     os.environ['DISPLAY'] = ':0'
@@ -56,7 +56,7 @@ def null(key): pass
 def analyze_image(image_path):
     try:
         img = Image.open(image_path)
-        response = model.generate_content(["On this image is a math problem if not say ONLY 'error 1'(with out ') if there simply just say the awnser thats it(can also be multipel awnsers)", img])
+        response = model.generate_content(["On this image is a school(like math or dutch or english and more!) problem if not say ONLY 'error 1'(with out ') if there simply just say the awnser thats it(can also be multipel awnsers)", img])
         response.resolve()
         if response.text == "error 1":
             return "Error!", "No math problem found!"
