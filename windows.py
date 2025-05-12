@@ -4,10 +4,11 @@ import ctypes
 import requests
 from pynput import keyboard
 from PIL import ImageGrab, Image
+from api_key import GOOGLE_API_KEY
 import google.generativeai as genai
 from winotify import Notification, audio
 
-GOOGLE_API_KEY = "REPLACE_WITH_YOUR_GOOGLE_API"
+
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
 VERSION = '1.1.2'
