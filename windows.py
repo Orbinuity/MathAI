@@ -15,7 +15,25 @@ if not GOOGLE_API_KEY:
 
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
-VERSION = '1.1.2'
+VERSION = '1.1.3'
+
+def fallback_popup(title, message):
+    ctypes.windll.user32.MessageBoxW(0, message, title, 1)
+
+def send_notification(title, message):
+    print(f"{title} - {message}")
+    try:
+        toast = Notification(
+            app_id="Math AI",
+            title=title,
+            msg=message,
+            icon=os.path.abspath("icon.png")
+        )
+        toast.set_audio(audio.Reminder, loop=False)
+        toast.show()
+    except Exception as e:
+        print(f"Toast failed with: {e}, falling back to message box")
+        fallback_popup(title, message)
 
 def check_version():
     response = requests.get("https://raw.githubusercontent.com/Orbinuity/MathAI/main/latest.version")
@@ -38,24 +56,6 @@ print("Update check complete, you are on the latest version!")
 genai.configure(api_key=GOOGLE_API_KEY)
 
 model = genai.GenerativeModel(GEMINI_MODEL_ID)
-
-def fallback_popup(title, message):
-    ctypes.windll.user32.MessageBoxW(0, message, title, 1)
-
-def send_notification(title, message):
-    print(f"{title} - {message}")
-    try:
-        toast = Notification(
-            app_id="Math AI",
-            title=title,
-            msg=message,
-            icon=os.path.abspath("icon.png")
-        )
-        toast.set_audio(audio.Reminder, loop=False)
-        toast.show()
-    except Exception as e:
-        print(f"Toast failed with: {e}, falling back to message box")
-        fallback_popup(title, message)
 
 def screenshot(name):
     try:
