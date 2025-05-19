@@ -15,7 +15,7 @@ if not GOOGLE_API_KEY:
 
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
-VERSION = '1.2.0'
+VERSION = '1.2.1'
 
 def fallback_popup(title, message):
     ctypes.windll.user32.MessageBoxW(0, message, title, 1)
