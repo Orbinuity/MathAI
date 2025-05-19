@@ -11,9 +11,14 @@ if not GOOGLE_API_KEY:
     print("API key is empty, please fill in the api_key file!")
     sys.exit(1)
 
+if len(sys.argv) > 1 and sys.argv[1] == "-update":
+    print("Updating...")
+    os.system('bash update.sh &')
+    exit(0)
+
 GEMINI_MODEL_ID = "gemini-2.0-flash"
 
-VERSION = '1.2.0'
+VERSION = '1.2.1'
 
 if 'DISPLAY' not in os.environ:
     os.environ['DISPLAY'] = ':0'
@@ -35,7 +40,7 @@ def check_version():
         sys.exit(1)
 
     if VERSION != latestVersion:
-        send_notification("Update Available!", f"New version available: {latestVersion}, please update!")
+        send_notification("Update Available!", f"New version available: {latestVersion}, please update with 'python {sys.argv[0]} -update'!")
         print(f"New version available: {latestVersion}, please update!")
         sys.exit(1)
     
