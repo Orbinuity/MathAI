@@ -5,6 +5,8 @@ sleep 2
 # Create backup directory
 mkdir -p "$BACKUP_DIR"
 
+rm -rf "$BACKUP_DIR/*"
+
 # Detect OS
 case "$(uname -s)" in
     MINGW*|CYGWIN*|MSYS*)
