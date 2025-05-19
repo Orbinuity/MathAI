@@ -49,7 +49,7 @@ esac
 
 rm -r *
 
-git pull https://github.com/Orbinuity/MathAI.git
+git clone https://github.com/Orbinuity/MathAI.git
 
 if [ -f "linux.py" ]; then
     python linux.py
